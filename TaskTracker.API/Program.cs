@@ -1,0 +1,62 @@
+using Microsoft.EntityFrameworkCore;
+using TaskTracker.Application.Interfaces;
+using TaskTracker.Application.Middleware;
+using TaskTracker.Application.Profiles;
+using TaskTracker.Application.Services;
+using TaskTracker.Infrastructure.Data;
+using TaskTracker.Infrastructure.Interfaces;
+using TaskTracker.Infrastructure.Repository;
+using AutoMapper;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddDbContext<TaskTrackerDbContext>(options =>
+    options.UseInMemoryDatabase("TaskTrackerDb"));
+
+
+builder.Services.AddAutoMapper(typeof(TaskTrackerProfile));
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+       policy => policy.WithOrigins("https://localhost:4200")
+                       .AllowAnyHeader()
+                       .AllowAnyMethod());
+
+});
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+    });
+
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<TaskTrackerDbContext>();
+    context.Database.EnsureCreated();
+}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseCors("AllowFrontend");
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
