@@ -27,6 +27,8 @@ namespace TaskTracker.Application.Services
 
         public async Task<ApiResponse<TaskDto>> AddAsync(TaskAddDto taskAddDto)
         {
+            if (string.IsNullOrEmpty(taskAddDto.Title) || string.IsNullOrEmpty(taskAddDto.Description))
+                throw new ApiException(400, $"Title and Description are required");
             var task = _mapper.Map<TaskEntity>(taskAddDto);
             var taskResponse = await _taskRepository.AddAsync(task);
             return new ApiResponse<TaskDto>(200, "Task added successfullty", _mapper.Map<TaskDto>(taskResponse));
