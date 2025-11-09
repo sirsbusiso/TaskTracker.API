@@ -43,11 +43,11 @@ namespace TaskTracker.Application.Services
 
         }
 
-        public async Task<ApiResponse<List<TaskDto>>> FindAsync(string? title, string? description)
+        public async Task<ApiResponse<List<TaskDto>>> FindAsync(string query)
         {
             Expression<Func<TaskEntity, bool>> predicate = t =>
-                      (string.IsNullOrEmpty(title) || t.Title.Contains(title)) &&
-                      (string.IsNullOrEmpty(description) || t.Status.ToString() == description);
+                (!string.IsNullOrEmpty(query) && t.Title.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                (!string.IsNullOrEmpty(query) && t.Description.ToString().Contains(query, StringComparison.OrdinalIgnoreCase));
 
             var taskResponse = await _taskRepository.FindAsync(predicate);
             if (taskResponse == null)
@@ -60,7 +60,7 @@ namespace TaskTracker.Application.Services
             var taskResponse = await _taskRepository.GetAllAsync();
             if (!taskResponse.Any())
                 throw new ApiException(404, $"No task found");
-            return new ApiResponse<List<TaskDto>>(200, "Task Found", _mapper.Map<List<TaskDto>>(taskResponse));
+            return new ApiResponse<List<TaskDto>>(200, "Tasks Found", _mapper.Map<List<TaskDto>>(taskResponse));
         }
 
         public async Task<ApiResponse<TaskDto>> GetByIdAsync(int taskId)

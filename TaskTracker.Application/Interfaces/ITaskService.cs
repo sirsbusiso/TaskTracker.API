@@ -12,6 +12,6 @@ namespace TaskTracker.Application.Interfaces
         Task<ApiResponse<TaskDto>> AddAsync(TaskAddDto taskAddDto);
         Task<ApiResponse<TaskDto>> UpdateAsync(int taskId, TaskUpdateDto taskUpdateDto);
         Task<ApiResponse<bool>> DeleteAsync(int taskId);
-        Task<ApiResponse<List<TaskDto>>> FindAsync(string? title, string? description);
+        Task<ApiResponse<List<TaskDto>>> FindAsync(string query);
     }
 }

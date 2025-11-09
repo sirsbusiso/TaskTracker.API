@@ -28,9 +28,9 @@ namespace TaskTracker.API.Controllers
             return Ok(taskResult);
         }
         [HttpGet("search")]
-        public async Task<IActionResult> Search([FromQuery] string? title, [FromQuery] string description)
+        public async Task<IActionResult> Search([FromQuery] string query)
         {
-            var taskResult = await _taskService.FindAsync(title, description);
+            var taskResult = await _taskService.FindAsync(query);
             return Ok(taskResult);
         }
 
