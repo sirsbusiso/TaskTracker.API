@@ -17,8 +17,8 @@ namespace TaskTracker.Domain.Entities
         public required string Description { get; set; }
         public Status Status { get; set; } = Status.New;
         public Priority Priority { get; set; }
-        public DateTime? DueDate { get; set; }  
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public string? DueDate { get; set; }
+        public required string CreatedAt { get; set; }
     }
 
     public enum Status

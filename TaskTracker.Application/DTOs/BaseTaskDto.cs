@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Application.DTOs
@@ -15,7 +9,7 @@ namespace TaskTracker.Application.DTOs
         public required string Description { get; set; }
         public Status Status { get; set; } = Status.New;
         public Priority Priority { get; set; }
-        public DateTime? DueDate { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public string? DueDate { get; set; }
+        public string CreatedAt { get; set; } = DateTime.UtcNow.ToString("dd-MM-yyyy");
     }
 }

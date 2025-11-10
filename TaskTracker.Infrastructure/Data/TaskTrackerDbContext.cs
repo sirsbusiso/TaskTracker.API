@@ -29,7 +29,7 @@ namespace TaskTracker.Infrastructure.Data
                     Description = "Initialize project structure and database",
                     Status = Status.New,
                     Priority = Priority.High,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow.ToString("dd-MM-yyyy")
                 },
                 new TaskEntity
                 {
@@ -38,7 +38,7 @@ namespace TaskTracker.Infrastructure.Data
                     Description = "Implement CRUD for TaskEntity",
                     Status = Status.InProgress,
                     Priority = Priority.Medium,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow.ToString("dd-MM-yyyy")
                 },
                 new TaskEntity
                 {
@@ -47,7 +47,7 @@ namespace TaskTracker.Infrastructure.Data
                     Description = "Add unit tests for repository layer",
                     Status = Status.Done,
                     Priority = Priority.Low,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow.ToString("dd-MM-yyyy")
                 }
             );
 

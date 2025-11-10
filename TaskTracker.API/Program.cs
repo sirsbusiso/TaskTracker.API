@@ -26,7 +26,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-       policy => policy.WithOrigins("https://localhost:4200")
+       policy => policy.WithOrigins("http://localhost:4200")
                        .AllowAnyHeader()
                        .AllowAnyMethod());
 
@@ -40,7 +40,7 @@ builder.Services.AddControllers()
 
 
 var app = builder.Build();
-
+app.UseCors("AllowFrontend");
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<TaskTrackerDbContext>();
@@ -52,7 +52,7 @@ app.UseSwaggerUI();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseCors("AllowFrontend");
+
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

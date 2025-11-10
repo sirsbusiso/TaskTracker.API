@@ -21,7 +21,7 @@ namespace TaskTracker.Tests.TaskTrackerTests.Helpers
                     Description = "Initialize project structure and database",
                     Status = Status.New,
                     Priority = Priority.High,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow.ToString()
                 },
                 new TaskEntity
                 {
@@ -30,7 +30,7 @@ namespace TaskTracker.Tests.TaskTrackerTests.Helpers
                     Description = "Implement CRUD for TaskEntity",
                     Status = Status.InProgress,
                     Priority = Priority.Medium,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow.ToString()
                 },
                 new TaskEntity
                 {
@@ -39,7 +39,7 @@ namespace TaskTracker.Tests.TaskTrackerTests.Helpers
                     Description = "Add unit tests for repository layer",
                     Status = Status.Done,
                     Priority = Priority.Low,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow.ToString()
                 }
             };
         }
@@ -49,7 +49,7 @@ namespace TaskTracker.Tests.TaskTrackerTests.Helpers
             return new TaskAddDto
             {
                 Description = "",
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = "2025-11-10T18:30:00.123Z",
                 Status = Status.New,
                 Priority = Priority.High,
                 Title = ""
