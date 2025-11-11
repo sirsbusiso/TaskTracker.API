@@ -57,3 +57,7 @@ https://localhost:44369
 
 Swagger
 https://localhost:44369/swagger/index.html
+
+# Demo short video link
+
+https://github.com/sirsbusiso/TaskTracker.API/releases
