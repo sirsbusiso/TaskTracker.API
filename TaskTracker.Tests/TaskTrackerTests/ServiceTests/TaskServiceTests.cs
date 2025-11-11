@@ -41,7 +41,7 @@ namespace TaskTracker.Tests.TaskTrackerTests.ServiceTests
             //Assert
             Assert.NotNull(result);
             Assert.Equal(200, result.StatusCode);
-            Assert.Equal("Task Found", result.Message);
+            Assert.Equal("Tasks Found", result.Message);
             Assert.Equal(3, result.Data.Count);
         }
 
