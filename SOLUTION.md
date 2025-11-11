@@ -76,13 +76,13 @@ CI/CD using GitHub Actions to build and publish Docker images
    └── TaskTracker.Tests # Unit/Integration Tests
    └── TaskTrackerTests
 
-| Layer              | Responsibility                                                         |
-| ------------------ | ---------------------------------------------------------------------- |
-| **API**            | Handles HTTP requests and responses, routing, controllers, middleware. |
-| **Application**    | Business logic, DTO mapping, services, validation, middleware.         |
-| **Domain**         | Core domain entities and models.                                       |
-| **Infrastructure** | Database access, repositories, and external service integrations.      |
-| **Tests**          | Unit and integration tests for application and domain logic.           |
+| Layer              | Responsibility                                                    |
+| ------------------ | ----------------------------------------------------------------- |
+| **API**            | Handles HTTP requests and responses, routing, controllers.        |
+| **Application**    | Business logic, DTO mapping, services, validation, middleware.    |
+| **Domain**         | Core domain entities and models.                                  |
+| **Infrastructure** | Database access, repositories, and external service integrations. |
+| **Tests**          | Unit and integration tests for application and domain logic.      |
 
 4. CI/CD with GitHub Actions
 
