@@ -84,6 +84,17 @@ CI/CD using GitHub Actions to build and publish Docker images
 | **Infrastructure** | Database access, repositories, and external service integrations. |
 | **Tests**          | Unit and integration tests for application and domain logic.      |
 
+## API Endpoints
+
+| Method | Route              | Description                         |
+| ------ | ------------------ | ----------------------------------- |
+| GET    | /api/task          | Get all task                        |
+| GET    | /api/task/{taskId} | Get a task by Id                    |
+| POST   | /api/task          | Create a task                       |
+| PUT    | /api/task/{taskId} | Update a task                       |
+| DELETE | /api/task/{taskId} | Delete a task                       |
+| DELETE | /api/task/search   | Search task by title or description |
+
 4. CI/CD with GitHub Actions
 
 Build & Test: Runs .NET 8 build and test commands.
@@ -92,4 +103,4 @@ Docker: Builds a Docker image for the API.
 
 Push: Pushes Docker image to Docker Hub using secrets (DOCKER_USERNAME, DOCKER_PASSWORD).
 
-Workflow Example: .github/workflows/docker-build.yml
+Workflow Example: .github/workflows/pipeline.yml
