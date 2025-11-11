@@ -6,11 +6,19 @@ using TaskTracker.Application.Services;
 using TaskTracker.Infrastructure.Data;
 using TaskTracker.Infrastructure.Interfaces;
 using TaskTracker.Infrastructure.Repository;
-using AutoMapper;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .Enrich.FromLogContext()
+    .MinimumLevel.Error()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
 builder.Services.AddDbContext<TaskTrackerDbContext>(options =>
     options.UseInMemoryDatabase("TaskTrackerDb"));
 
@@ -20,7 +28,7 @@ builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
