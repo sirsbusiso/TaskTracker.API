@@ -93,7 +93,7 @@ CI/CD using GitHub Actions to build and publish Docker images
 | POST   | /api/task          | Create a task                       |
 | PUT    | /api/task/{taskId} | Update a task                       |
 | DELETE | /api/task/{taskId} | Delete a task                       |
-| DELETE | /api/task/search   | Search task by title or description |
+| GET    | /api/task/search   | Search task by title or description |
 
 4. CI/CD with GitHub Actions
 
