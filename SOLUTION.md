@@ -6,9 +6,9 @@ Solution built in dotnet core 8 and the main functionality is to track task.
 
 The architecture approach used is DDD with traditional repository pattern.
 
-Clean soliuton that adhere to SOLID principle to promote clease code and easy maintenance
+Clean soliuton that adhere to SOLID principle to promote clean code and easy maintenance
 
-Did I encouter any issue that I needed to solve quickly?
+Did I encounter any issue that I needed to solve quickly?
 
 - No, no major issue encounted fortunately except for normal build issues
 
